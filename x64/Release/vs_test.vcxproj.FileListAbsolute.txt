@@ -1,0 +1,3 @@
+C:\Users\28147\Documents\visual_proj\code\x64\Release\vs_test.exe
+C:\Users\28147\Documents\visual_proj\cut2slice\x64\Release\vs_test.exe
+C:\Users\28147\Documents\cut2slice\x64\Release\vs_test.exe

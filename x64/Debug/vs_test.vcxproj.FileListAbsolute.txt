@@ -1,0 +1,2 @@
+G:\py_mfcc_n_dtw\visual_proj\code\x64\Debug\vs_test.exe
+C:\Users\28147\Documents\visual_proj\code\x64\Debug\vs_test.exe

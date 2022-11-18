@@ -1,0 +1,22 @@
+﻿  DTW_Function.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\numeric(34,26): warning C4244: “=”: 从“float”转换到“_Ty”，可能丢失数据
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.34.31933\include\numeric(43,1): message : 查看对正在编译的函数 模板 实例化“_Ty std::accumulate<_InIt,_Ty,std::plus<void>>(const _InIt,const _InIt,_Ty,_Fn)”的引用
+          with
+          [
+              _Ty=int,
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<float>>>,
+              _Fn=std::plus<void>
+          ]
+C:\Users\28147\Documents\visual_proj\code\DTW_Function.cpp(258,63): message : 查看对正在编译的函数 模板 实例化“_Ty std::accumulate<std::_Vector_iterator<std::_Vector_val<std::_Simple_types<float>>>,int>(const _InIt,const _InIt,_Ty)”的引用
+          with
+          [
+              _Ty=int,
+              _InIt=std::_Vector_iterator<std::_Vector_val<std::_Simple_types<float>>>
+          ]
+  main.cpp
+  正在生成代码...
+  vs_test.vcxproj -> C:\Users\28147\Documents\visual_proj\code\x64\Debug\vs_test.exe
