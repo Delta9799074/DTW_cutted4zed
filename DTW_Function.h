@@ -6,14 +6,7 @@ class DTW_Function{
 private:
     vector<string> split_str(string str);
 
-    vector<float> standard_normal(vector<float> ini_vector);
-    float vector_mean(vector<float> distance);
-    float vector_std_variance(vector<float> distance, float mean);
-
-    float ComputeDTW(float *cep1, float *cep2, int num1, int num2);
-    float Distance(float * ps1,float * ps2/*, int k1, int k2*/);
-
-    void AdjustSize();
+    float Distance(float * ps1,float * ps2);
 
     float min(float num1, float num2, float num3);
 
