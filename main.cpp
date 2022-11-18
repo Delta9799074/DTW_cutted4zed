@@ -5,39 +5,31 @@
 using namespace std;
 
 #define TEST_TIMES 1
+#define LIB_LEN 2250
+#define QUERY_LEN 750
 
 int main(int argc, char *argv[])
 {
     DTW_Function* dtw_example = new DTW_Function(13);
-//read and reshape array
-    vector<vector<string> > match_csv_content;
     vector<vector<float> >  match_mfcc_feat;
 
-    vector<vector<string> > query_csv_content;
     vector<vector<float> >  query_mfcc_feat;
 
 
-//    auto prep_start = chrono::high_resolution_clock::now();
-
+/*
     string match_lib_path = "G:\\py_mfcc_n_dtw\\dtw_cpp\\mfcc_csv\\find_directory\\";
     string query_lib_path = "G:\\py_mfcc_n_dtw\\dtw_cpp\\mfcc_csv\\query\\";
- /*
+ */
     string match_lib_path = "G:\\py_mfcc_n_dtw\\dtw_cpp\\database_for_zed\\find_directory\\";
     string query_lib_path = "G:\\py_mfcc_n_dtw\\dtw_cpp\\database_for_zed\\query\\";
-*/
+
     string match_path, query_path;
     int random_gen_seed;
 
-/* 
-    auto prep_stop = chrono::high_resolution_clock::now();
-
-    auto prep_duration = chrono::duration_cast<chrono::microseconds>(prep_stop - prep_start);
-    cout << "Preparing data execute time:" << prep_duration.count() << "ms"<< endl;
- */
 //Dynamic Time Warping to Recognize
     vector<float> total_mindist;
+    total_mindist.reserve(10);
     float minimum_dist;
-    float aver_dist;
     float recog_result;
     double corr_rate;
     int   minimum_index;
@@ -50,33 +42,21 @@ int main(int argc, char *argv[])
     {
         srand(time(0));
         query_rand_num = rand() % 10;
-
-    //    cout << "Now test : " << query_rand_num << endl;
-
         query_path = query_lib_path + to_string(query_rand_num) + ".csv";
-        query_csv_content = dtw_example ->read_mfcc_from_csv(query_path);
 
         total_mindist.clear();
-        for (int j = 0; j < 10; j++)
-            {
+        for (int j = 0; j < 10; j++){
             match_path = match_lib_path + to_string(j) + ".csv";
-            match_csv_content = dtw_example -> read_mfcc_from_csv(match_path);
             srand(time(0));
-            random_gen_seed = rand() % query_csv_content.size();
-            query_mfcc_feat = dtw_example -> rebuilt_mfcc_feat(query_csv_content[random_gen_seed]);
-            dtw_example -> iteration_dtw(match_csv_content, query_mfcc_feat, &minimum_dist, &minimum_index);
-        //    cout << "Number" << j << "Normalized distance is:" << setprecision(15) << minimum_dist << endl;
+            random_gen_seed = rand() % QUERY_LEN;
+            query_mfcc_feat = dtw_example->read_mfcc_from_csv(query_path, random_gen_seed);
+            dtw_example -> iteration_dtw(match_path, LIB_LEN, query_mfcc_feat, &minimum_dist);
             total_mindist.push_back(minimum_dist);
-        //    cout << total_mindist.size() << endl;
             random_gen_seed = 0;
         }
         minimum_index = std::min_element(total_mindist.begin(), total_mindist.end()) - total_mindist.begin();
 
         //cout << "Recognization Number: " << minimum_index << endl;
-/* 
-    aver_dist = float(accumulate(total_mindist.begin(), total_mindist.end(), 0) / total_mindist.size());
-    cout << "Average Recognization Distance:" << aver_dist << endl;
- */    
         if(minimum_index == query_rand_num){
             //cout << "Recognization Result:TRUE" << endl;
             correct_num += 1;

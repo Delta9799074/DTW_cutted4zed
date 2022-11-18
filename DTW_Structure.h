@@ -11,7 +11,6 @@
 #include <fstream>
 #include <iterator>
 #include <algorithm>
-#include <valarray>
 
 #include<stdlib.h>
 #include<malloc.h>
